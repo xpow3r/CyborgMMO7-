@@ -1,0 +1,591 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Warcraft Plugin for Cyborg MMO7
+	Filename: OptionPage.xml
+	Description: The configuration page layout for the addons interface page
+	Copyright (C) 2012 Mad Catz Inc.
+	Author: Christopher Hooks
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	-->
+
+	<FontString name="CyborgMMO_TemplateNormalString" font="Fonts\FRIZQT__.TTF" text="NoText" virtual="true">
+		<FontHeight><AbsValue val="10"/></FontHeight>
+		<Color r="1" g="1" b="1"/>
+		<Shadow>
+			<Color r="0" g="0" b="0"/>
+			<Offset><AbsDimension x="1" y="-1"/></Offset>
+		</Shadow>
+	</FontString>
+
+	<Button name="CyborgMMO_TemplateButton" virtual="true">
+		<NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+			<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+		</NormalTexture>
+		<PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+			<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+		</PushedTexture>
+		<DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+			<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+		</DisabledTexture>
+		<HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+			<TexCoords left="0" right="0.625" top="0" bottom="0.6875"/>
+		</HighlightTexture>
+
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisabledFont style="GameFontDisable"/>
+		<Scripts>
+			<OnLoad>
+				self:RegisterEvent("VARIABLES_LOADED")
+			</OnLoad>
+			<OnEvent>
+				if event == "VARIABLES_LOADED" then
+					CyborgMMO_SetBindingButtonText(self:GetName())
+				end
+			</OnEvent>
+			<OnClick>
+				CyborgMMO_BindButton(self:GetName())
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<FontString name="CyborgMMO_TemplateSliderTitle" font="Fonts\FRIZQT__.TTF" text="NoText" virtual="true">
+		<FontHeight><AbsValue val="14"/></FontHeight>
+		<Color r="1" g="0.8196079" b="0"/>
+		<Shadow>
+			<Color r="0" g="0" b="0"/>
+			<Offset><AbsDimension x="1" y="-1"/></Offset>
+		</Shadow>
+	</FontString>
+
+	<Frame name="CyborgMMO_TemplateButtonRow" virtual="true">
+		<Size><AbsDimension x="160" y="28"/></Size>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentName" inherits="GameFontNormal">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent">
+							<Offset><AbsDimension x="0" y="-10"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+		<Button name="$parentMode1" inherits="CyborgMMO_TemplateButton">
+			<Size><AbsDimension x="145" y="28"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent">
+					<Offset><AbsDimension x="135" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+		<Button name="$parentMode2" inherits="CyborgMMO_TemplateButton">
+			<Size><AbsDimension x="145" y="28"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent">
+				<Offset><AbsDimension x="280" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+		<Button name="$parentMode3" inherits="CyborgMMO_TemplateButton">
+			<Size><AbsDimension x="145" y="28"/></Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="$parent">
+					<Offset><AbsDimension x="425" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+		</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CyborgMMO_LoadStrings(getglobal(self:GetName().."Name"))
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<!-- Custom keybinds -->
+	<Frame name="CyborgMMO_MouseRebind" virtual="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge" text="CyborgMMO_MouseRebindTitle">
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMode1" inherits="GameFontNormal" text="Mode Num">
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="147" y="-28"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMode2" inherits="GameFontNormal" text="Mode Num">
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="282" y="-28"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMode3" inherits="GameFontNormal" text="Mode Num">
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="427" y="-28"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentMouseRow1" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent">
+						<Offset><AbsDimension x="0" y="-40"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow2" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow1">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow3" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow2">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow4" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow3">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow5" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow4">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow6" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow5">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow7" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow6">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow8" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow7">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRow9" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow8">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRowA" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRow9">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRowB" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRowA">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRowC" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRowB">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentMouseRowD" inherits="CyborgMMO_TemplateButtonRow">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMouseRowC">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Frame name="CyborgMMO_OptionPage">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="15" y="-15"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Frames>
+			<CheckButton name="$parentMiniMapButton" inherits="UICheckButtonTemplate" checked="true">
+				<Size><AbsDimension x="32" y="32"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateSliderTitle">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="$parentMiniMapButton">
+									<Offset><AbsDimension x="45" y="0"/></Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+					</OnLoad>
+					<OnClick>
+						if self:GetChecked() then
+							CyborgMMO_SetMiniMapButton(true)
+						else
+							CyborgMMO_SetMiniMapButton(false)
+						end
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+
+
+			<CheckButton name="$parentCyborgButton" inherits="UICheckButtonTemplate" checked="true">
+				<Size><AbsDimension x="32" y="32"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentMiniMapButton">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateSliderTitle">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="$parentCyborgButton">
+									<Offset><AbsDimension x="45" y="0"/></Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+					</OnLoad>
+					<OnClick>
+						if self:GetChecked() then
+							CyborgMMO_SetCyborgHeadButton(true)
+						else
+							CyborgMMO_SetCyborgHeadButton(false)
+						end
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<CheckButton name="$parentPerSpecBindings" inherits="UICheckButtonTemplate" checked="true">
+				<Size><AbsDimension x="32" y="32"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCyborgButton">
+						<Offset><AbsDimension x="0" y="-30"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateSliderTitle">
+							<Anchors>
+								<Anchor point="LEFT" relativePoint="$parentPerSpecBindings">
+									<Offset><AbsDimension x="45" y="0"/></Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+					</OnLoad>
+					<OnClick>
+						if self:GetChecked() then
+							CyborgMMO_SetPerSpecBindings(true)
+						else
+							CyborgMMO_SetPerSpecBindings(false)
+						end
+					</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<Frame name="$parentCyborgSize">
+				<Size>
+					<AbsDimension x="180" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle">
+						<Offset><AbsDimension x="250" y="-40"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentSlider" enableMouse="true" minValue=".5" maxValue="1" defaultValue=".75" valueStep=".01" orientation="HORIZONTAL">
+						<Size><AbsDimension x="128" y="17"/></Size>
+						<Anchors>
+							<Anchor point="LEFT"/>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+						<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+							<BackgroundInsets>
+								<AbsInset left="3" right="3" top="6" bottom="6"/>
+							</BackgroundInsets>
+							<TileSize><AbsValue val="8"/></TileSize>
+							<EdgeSize><AbsValue val="8"/></EdgeSize>
+						</Backdrop>
+						<Layers>
+							<Layer>
+								<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateSliderTitle">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT"/>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentLow" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateNormalString" text="50%">
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHigh" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateNormalString" text="100%">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+							<Size><AbsDimension x="32" y="32"/></Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnLoad>
+								CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+							</OnLoad>
+							<OnValueChanged>
+								CyborgMMO_SetOpenButtonSize(self:GetValue())
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</Frame>
+			<Frame name="$parentPluginSize">
+				<Size><AbsDimension x="180" y="32"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCyborgSize">
+						<Offset><AbsDimension x="0" y="-50"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Slider name="$parentSlider" enableMouse="true" minValue=".5" maxValue="1" defaultValue=".75" valueStep=".01" orientation="HORIZONTAL">
+						<Size><AbsDimension x="128" y="17"/></Size>
+						<Anchors>
+							<Anchor point="LEFT"/>
+							<Anchor point="RIGHT"/>
+						</Anchors>
+						<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+							<BackgroundInsets>
+								<AbsInset left="3" right="3" top="6" bottom="6"/>
+							</BackgroundInsets>
+							<TileSize><AbsValue val="8"/></TileSize>
+							<EdgeSize><AbsValue val="8"/></EdgeSize>
+						</Backdrop>
+						<Layers>
+							<Layer>
+								<FontString name="$parentTitle" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateSliderTitle">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT"/>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentLow" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateNormalString" text="50%">
+									<Anchors>
+										<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentHigh" font="Fonts\FRIZQT__.TTF" inherits="CyborgMMO_TemplateNormalString" text="100%">
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+							<Size><AbsDimension x="32" y="32"/></Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnLoad>
+								CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+							</OnLoad>
+							<OnValueChanged>
+								CyborgMMO_SetMainPageSize(self:GetValue())
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</Frame>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+				CyborgMMO_DPrint("Loaded Option Page")
+				self = CyborgMMO_OptionView.new(self)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CyborgMMO_OptionSubPageRebind">
+		<Frames>
+			<Frame name="CyborgMMO_OptionPageRebind" inherits="CyborgMMO_MouseRebind">
+				<Size><AbsDimension x="40" y="60"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset><AbsDimension x="15" y="-15"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Title"))
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Mode1"))
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Mode2"))
+						CyborgMMO_LoadStrings(getglobal(self:GetName().."Mode3"))
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self.name = CyborgMMO_StringTable.CyborgMMO_OptionPageRebindTitle
+				self.parent = CyborgMMO_OptionPage.name
+				self.default = CyborgMMO_SetDefaultKeyBindings
+				InterfaceOptions_AddCategory(self)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Button name="CyborgMMO_BindingFrame" toplevel="true" parent="UIParent" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" enableKeyboard="true">
+		<Size><AbsDimension x="400" y="200"/></Size>
+		<Anchors>
+			<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize><AbsValue val="32"/></TileSize>
+			<EdgeSize><AbsValue val="32"/></EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size><AbsDimension x="500" y="64"/></Size>
+					<Anchors>
+						<Anchor point="TOP"><Offset><AbsDimension x="0" y="12"/></Offset></Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHeaderText" inherits="GameFontNormal" text="FillerText">
+					<Size><AbsDimension x="500" y="13"/></Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset><AbsDimension x="0" y="-13"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="GameFontNormalLarge" name="$parentButtonName" text="Button Name">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent">
+							<Offset><AbsDimension x="0" y="32"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentKey" inherits="GameFontNormalLarge" text="KeyText">
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent">
+							<Offset><AbsDimension x="0" y="-16"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset><AbsDimension x="-3" y="-3"/></Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentExitButton" inherits="UIPanelButtonTemplate" text="Close">
+				<Size><AbsDimension x="80" y="26"/></Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset><AbsDimension x="-12" y="12"/></Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						HideUIPanel(self:GetParent())
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>
+				CyborgMMO_LoadStrings(getglobal(self:GetName().."HeaderText"))
+				CyborgMMO_LoadStrings(getglobal(self:GetName().."ExitButton"))
+				self:RegisterForClicks("AnyUp")
+			</OnLoad>
+			<OnClick>
+				CyborgMMO_BindingFrameOnKeyDown(self, button)
+			</OnClick>
+			<OnKeyDown>
+				CyborgMMO_BindingFrameOnKeyDown(self, key)
+			</OnKeyDown>
+			<OnMouseWheel>
+				if delta > 0 then
+					CyborgMMO_BindingFrameOnKeyDown(self, "MOUSEWHEELUP")
+				else
+					CyborgMMO_BindingFrameOnKeyDown(self, "MOUSEWHEELDOWN")
+				end
+			</OnMouseWheel>
+		</Scripts>
+	</Button>
+</Ui>

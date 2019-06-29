@@ -1,0 +1,309 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Warcraft Plugin for Cyborg MMO7
+	Filename: RatPage.xml
+	Description: Layout and description of the command slots for the mouse.
+	Copyright (C) 2012 Mad Catz Inc.
+	Author: Christopher Hooks
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	-->
+
+	<!-- IconTemplate -->
+	<Button name="CyborgMMO_TemplateIcon" virtual="true" inherits="SecureActionButtonTemplate">
+		<Size><AbsDimension x="32" y="32"/></Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentIcon"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentHotKey" inherits="NumberFontNormalSmallGray" justifyH="RIGHT">
+					<Size><AbsDimension x="32" y="10"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="-2" y="-2"/></Offset></Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<PushedTexture file="Interface\Buttons\UI-Quickslot-Depress"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+	</Button>
+
+	<Button name="CyborgMMO_TemplateSlot" inherits="CyborgMMO_TemplateIcon" virtual="true">
+		<Scripts>
+			<OnLoad>
+				self = CyborgMMO_SlotView.new(self)
+			</OnLoad>
+			<OnMouseDown>
+				if button == "LeftButton" then
+					self.Clicked()
+				end
+			</OnMouseDown>
+		</Scripts>
+	</Button>
+
+	<Button name="CyborgMMO_TemplateMode" virtual="true">
+		<Size><AbsDimension x="127" y="63"/></Size>
+		<ButtonText name="$parentText">
+			<FontHeight><AbsValue val="10"/></FontHeight>
+		</ButtonText>
+		<NormalFont style="GameFontNormal"/>
+		<HighlightFont style="GameFontHighlight"/>
+		<DisabledFont style="GameFontDisable"/>
+		<Scripts>
+			<OnLoad>
+				self = CyborgMMO_ModeView.new(self)
+			</OnLoad>
+			<OnClick>
+				self.Clicked()
+			</OnClick>
+		</Scripts>
+	</Button>
+
+	<!-- The Rat Page Frame -->
+	<Frame name="CyborgMMO_TemplateRatPage" virtual="true">
+		<Size><AbsDimension x="512" y="512"/></Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="-0"/></Offset></Anchor>
+		</Anchors>
+		<!-- Our Slot Locations -->
+		<Frames>
+			<CheckButton name="$parentSlot1" inherits="CyborgMMO_TemplateSlot" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-116"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot2" inherits="CyborgMMO_TemplateSlot" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-153"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot3" inherits="CyborgMMO_TemplateSlot" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-189"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot4" inherits="CyborgMMO_TemplateSlot" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-238"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotUp">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot5" inherits="CyborgMMO_TemplateSlot" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-273"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotMiddle">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot6" inherits="CyborgMMO_TemplateSlot" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-308"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotDown">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot7" inherits="CyborgMMO_TemplateSlot" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="33" y="-273"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotLeft">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot8" inherits="CyborgMMO_TemplateSlot" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="103" y="-273"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotRight">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot9" inherits="CyborgMMO_TemplateSlot" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-356"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot10" inherits="CyborgMMO_TemplateSlot" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-393"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot11" inherits="CyborgMMO_TemplateSlot" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="68" y="-429"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\Slot">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot12" inherits="CyborgMMO_TemplateSlot" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="50" y="-68"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotLeft">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="$parentSlot13" inherits="CyborgMMO_TemplateSlot" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="86" y="-68"/></Offset></Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture name="$parentText" file="Interface\AddOns\CyborgMMO7\Graphics\SlotRight">
+							<Size><AbsDimension x="33" y="33"/></Size>
+							<Anchors>
+								<Anchor point="CENTER"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<Button name="Mode1" inherits="CyborgMMO_TemplateMode" id="1">
+				<NormalTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode1Down"/>
+				<PushedTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode1Selected"/>
+				<HighlightTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode1Over"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="384" y="-33"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Mode2" inherits="CyborgMMO_TemplateMode" id="2">
+				<NormalTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode2Down"/>
+				<PushedTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode2Selected"/>
+				<HighlightTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode2Over"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="384" y="-33"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="Mode3" inherits="CyborgMMO_TemplateMode" id="3">
+				<NormalTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode3Down"/>
+				<PushedTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode3Selected"/>
+				<HighlightTexture file="Interface\AddOns\CyborgMMO7\Graphics\Mode3Over"/>
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="384" y="-33"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self = CyborgMMO_RatPageView.new(self)
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

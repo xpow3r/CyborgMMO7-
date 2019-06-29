@@ -1,0 +1,148 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Warcraft Plugin for Cyborg MMO7
+	Filename: MainPage.xml
+	Description: Xml description of the MMO7 UI
+	Copyright (C) 2012 Mad Catz Inc.
+	Author: Christopher Hooks
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	-->
+
+	<!-- UIButtonsTemplate-->
+	<Button name="CyborgMMO_TemplateCallbackButton" virtual="true" inherits="CyborgMMO_TemplateIcon">
+		<Scripts>
+			<OnLoad>
+				self = CyborgMMO_CallbackIcons.new(self)
+			</OnLoad>
+			<OnClick>
+				self.OnClick()
+			</OnClick>
+			<OnDragStart>
+				self.DragStart()
+			</OnDragStart>
+			<OnDragStop>
+				self.DragStop()
+			</OnDragStop>
+		</Scripts>
+	</Button>
+
+	<!-- The Main Form -->
+	<Frame name="CyborgMMO_MainPage" movable="true" enableMouse="true" clampedtoscreen="true" frameStrata="MEDIUM" hidden="true">
+		<TitleRegion>
+			<Size x="512" y="512"/>
+			<Anchors>
+				<Anchor point="LEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+			</Anchors>
+		</TitleRegion>
+		<Size><AbsDimension x="512" y="512"/></Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="UIParent"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture
+					name="$parentBackgroundTexture"
+					file="Interface\AddOns\CyborgMMO7\Graphics\ParchmentAndAllIcons"
+				>
+					<Size><AbsDimension x="512" y="512"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture
+					name="$parentRatCalloutsTexture"
+					file="Interface\AddOns\CyborgMMO7\Graphics\Lines"
+				>
+					<Size><AbsDimension x="512" y="512"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCharacterPage" inherits="CyborgMMO_TemplateCallbackButton" resize="false">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="379" y="-411"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInventory" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="379" y="-446"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSpellbook" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="414" y="-411"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMacros" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="449" y="-446"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentAchievement" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="449" y="-411"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentQuestLog" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="344" y="-446"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMap" inherits="CyborgMMO_TemplateCallbackButton">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="414" y="-446"/></Offset></Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCloseButton">
+				<Size><AbsDimension x="23" y="24"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="474" y="-8"/></Offset></Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CyborgMMO_Close()</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\AddOns\CyborgMMO7\Graphics\CloseButton"/>
+				<PushedTexture file="Interface\AddOns\CyborgMMO7\Graphics\CloseButtonDown"/>
+				<HighlightTexture file="Interface\AddOns\CyborgMMO7\Graphics\CloseButtonOver" alpha=".5"/>
+			</Button>
+			<Frame name="$parentSlotList" inherits="CyborgMMO_TemplateRatPage">
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				CyborgMMO_Loaded()
+				self:RegisterForDrag("LeftButton")
+			</OnLoad>
+			<OnEvent>CyborgMMO_Event(event, ...)</OnEvent>
+			<OnDragStart>
+				self:StartMoving()
+				self.isMoving = true
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing()
+				self.isMoving = false
+			</OnDragStop>
+		</Scripts>
+	</Frame>
+</Ui>

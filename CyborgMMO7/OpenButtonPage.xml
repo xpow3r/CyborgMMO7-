@@ -1,0 +1,150 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--
+	Warcraft Plugin for Cyborg MMO7
+	Filename: OpenButtonPage.xml
+	Description: The Cyborg Head logo button which opens and closes the UI
+	Copyright (C) 2012 Mad Catz Inc.
+	Author: Christopher Hooks
+
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	-->
+
+	<Frame name="CyborgMMO_OpenButtonPage" movable="true" clampedtoscreen="true" enableMouse="true" hidden="true">
+		<TitleRegion>
+			<Size x="75" y="75"/>
+			<Anchors>
+				<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+			</Anchors>
+		</TitleRegion>
+		<Size><AbsDimension x="50" y="50"/></Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="UIParent"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentOpenMainForm" clampedtoscreen="true" enableMouse="true" movable="true">
+				<Size><AbsDimension x="75" y="75"/></Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"><Offset><AbsDimension x="16" y="-14"/></Offset></Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						self:RegisterForDrag("LeftButton", "RightButton")
+					</OnLoad>
+					<OnClick>
+						CyborgMMO_Toggle()
+					</OnClick>
+					<OnDragStart>
+						self:StartMoving()
+						self.isMoving = true
+					</OnDragStart>
+					<OnDragStop>
+						self:StopMovingOrSizing()
+						self.isMoving = false
+					</OnDragStop>
+					<OnEnter>
+						CyborgMMO_ShowProfileTooltip(self:GetNormalTexture())
+					</OnEnter>
+					<OnLeave>
+						CyborgMMO_HideProfileTooltip()
+					</OnLeave>
+				</Scripts>
+
+				<NormalTexture file="Interface\AddOns\CyborgMMO7\Graphics\Cyborg">
+					<Color r="0.0" g="0.0" b="0.0" a="1"/>
+				</NormalTexture>
+				<HighlightTexture file="Interface\AddOns\CyborgMMO7\Graphics\CyborgGlow">
+					<Color r=".38" g=".85" b="1.0" a="0.90"/>
+				</HighlightTexture>
+
+				<ButtonText name="$parentText">
+					<FontHeight><AbsValue val="10"/></FontHeight>
+				</ButtonText>
+
+				<NormalFont style="GameFontNormal"/>
+				<HighlightFont style="GameFontHighlight"/>
+				<DisabledFont style="GameFontDisable"/>
+				<PushedTextOffset x="0" y="0"/>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Button name="CyborgMMO_MiniMapButton" parent="Minimap">
+		<Size><AbsDimension x="33" y="33"/></Size>
+		<Anchors>
+			<Anchor point="TOPLEFT"><Offset><AbsDimension x="0" y="0"/></Offset></Anchor>
+		</Anchors>
+		<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\AddOns\CyborgMMO7\Graphics\Cyborg">
+					<Size><AbsDimension x="20" y="20"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><AbsDimension x="6" y="-5"/></Anchor>
+					</Anchors>
+					<Color r="0.0" g="0.0" b="0.0" a="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIconGlow" file="Interface\AddOns\CyborgMMO7\Graphics\CyborgGlow">
+					<Size><AbsDimension x="20" y="20"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"><AbsDimension x="6" y="-5"/></Anchor>
+					</Anchors>
+					<Color r=".38" g=".85" b="1.0" a="0.90"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture file="Interface\Minimap\MiniMap-TrackingBorder">
+					<Size><AbsDimension x="52" y="52"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				self:RegisterForDrag("LeftButton", "RightButton")
+			</OnLoad>
+			<OnMouseDown>
+			</OnMouseDown>
+			<OnMouseUp>
+				if button == "RightButton" then
+					InterfaceOptionsFrame_OpenToCategory(CyborgMMO_OptionPage)
+				else
+					CyborgMMO_Toggle()
+					if not CyborgMMO_IsOpen() then
+						CyborgMMO_RatQuickPage:Show()
+					end
+				end
+			</OnMouseUp>
+			<OnEnter>
+				if not CyborgMMO_IsOpen() then
+					CyborgMMO_RatQuickPage:Show()
+				end
+				CyborgMMO_ShowProfileTooltip(getglobal(self:GetName().."Icon"))
+			</OnEnter>
+			<OnLeave>
+				CyborgMMO_RatQuickPage:Hide()
+				CyborgMMO_HideProfileTooltip()
+			</OnLeave>
+			<OnUpdate>
+				if self:IsDragging() then
+					CyborgMMO_MiniMapButtonOnUpdate()
+				end
+			</OnUpdate>
+		</Scripts>
+	</Button>
+</Ui>

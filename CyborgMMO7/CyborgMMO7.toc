@@ -1,0 +1,26 @@
+## Interface: 80200
+## Title: Cyborg MMO7 Addon
+## DefaultState: Enabled
+## Author: CyborgMMO7
+## Version: v7.0.0
+## LoadOnDemand: 0
+## SavedVariablesPerCharacter: CyborgMMO7SaveData
+## SavedVariables: CyborgMMO_ProfileKeyBindings CyborgMMO_LocalMountMap
+## X-Curse-Packaged-Version: v7.0.0
+## X-Curse-Project-Name: Cyborg MMO7
+## X-Curse-Project-ID: cyborg-mmo7
+## X-Curse-Repository-ID: wow/cyborg-mmo7/mainline
+
+Localisation.lua
+OptionView.lua
+CallbackFactory.lua
+WowObjects.lua
+RatPageModel.lua
+RatPageController.lua
+RatPageView.lua
+CyborgMMO7.lua
+RatPage.xml
+RatQuickPage.xml
+MainPage.xml
+OpenButtonPage.xml
+OptionPage.xml

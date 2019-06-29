@@ -1,0 +1,8 @@
+2015-02-26  Jerome Vuarand  <jerome.vuarand@gmail.com>
+
+[553715eacab6] [v6.1.0-1]
+* CyborgMMO7.toc:
+
+Updated the game interface version for 6.1.
+
+
